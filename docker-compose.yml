@@ -28,7 +28,7 @@ services:
     container_name: mosquitto
     image: eclipse-mosquitto
     environment:
-      - TZ=<TIMEZONE>
+      - TZ=Europe/Rome
     ports:
       - 1883:1883
       - 9001:9001
@@ -37,6 +37,21 @@ services:
       - "/opt/stacks/hass/mosquitto/data:/mosquitto/data"
       - "/opt/stacks/hass/mosquitto/log:/mosquitto/log"
     restart: unless-stopped
+
+  zigbee2mqtt:
+        container_name: zigbee2mqtt
+        image: ghcr.io/koenkk/zigbee2mqtt
+        restart: unless-stopped
+        volumes:
+            - /opt/stacks/hass/zigbee2mqtt/data:/app/data
+            - /run/udev:/run/udev:ro
+        ports:
+            - 8080:8080
+        environment:
+            - TZ=Europe/Rome
+        devices:
+            # Make sure this matched your adapter location
+            - /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_ac168f1a53e7ed11a343626262c613ac-if00-port0:/dev/ttyACM0
 
   code-server:
     container_name: code_server

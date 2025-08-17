@@ -18,6 +18,10 @@ mkdir -p "/opt/stacks/hass/mosquitto/config"
 
 mkdir -p "/opt/stacks/hass/nodered"
 
+# Creating zigbee2mqtt dir
+
+mkdir /opt/stacks/hass/zigbee2mqtt/data
+
 # Creating mosquitto config file
 
 cat > /opt/stacks/hass/mosquitto/config/mosquitto.conf <<EOF
