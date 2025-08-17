@@ -3,7 +3,7 @@ services:
     image: homeassistant/home-assistant:latest
     container_name: hassio
     volumes:
-      - ./hass-config:/config
+      - /opt/stacks/hass/hass-config:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
@@ -18,7 +18,7 @@ services:
     ports:
       - 1880:1880
     volumes:
-      - ./nodered:/data
+      - /opt/stacks/hass/nodered:/data
     depends_on:
       - homeassistant
       - mosquitto
@@ -33,9 +33,9 @@ services:
       - 1883:1883
       - 9001:9001
     volumes:
-      - "./mosquitto/config:/mosquitto/config"
-      - "./mosquitto/data:/mosquitto/data"
-      - "./mosquitto/log:/mosquitto/log"
+      - "/opt/stacks/hass/mosquitto/config:/mosquitto/config"
+      - "/opt/stacks/hass/mosquitto/data:/mosquitto/data"
+      - "/opt/stacks/hass/mosquitto/log:/mosquitto/log"
     restart: unless-stopped
 
   code-server:
