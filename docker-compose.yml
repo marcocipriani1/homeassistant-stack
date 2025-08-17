@@ -1,7 +1,7 @@
 services:
-  hassio:
+  homeassistant:
     image: homeassistant/home-assistant:latest
-    container_name: hassio
+    container_name: homeassistant
     volumes:
       - /opt/stacks/hass/hass-config:/config
       - /etc/localtime:/etc/localtime:ro
