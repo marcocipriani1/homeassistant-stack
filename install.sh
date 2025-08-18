@@ -22,6 +22,10 @@ mkdir -p "/opt/stacks/hass/nodered"
 
 mkdir /opt/stacks/hass/zigbee2mqtt/data
 
+# Creating matter dir
+
+mkdir /opt/stacks/hass/home-assistant-matter-hub
+
 # Creating mosquitto config file
 
 cat > /opt/stacks/hass/mosquitto/config/mosquitto.conf <<EOF
@@ -30,7 +34,8 @@ persistence_location /mosquitto/data/
 log_dest file /mosquitto/log/mosquitto.log
 listener 1883
 listener 9001
-allow_anonymous true
+allow_anonymous false
+password_file /mosquitto/config/passwd
 EOF
 
 # Creating mosquitto user

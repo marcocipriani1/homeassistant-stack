@@ -53,14 +53,3 @@ services:
             # Make sure this matched your adapter location
             - /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_ac168f1a53e7ed11a343626262c613ac-if00-port0:/dev/ttyACM0
 
-  code-server:
-    container_name: code_server
-    image: lscr.io/linuxserver/code-server:latest
-    environment:
-      - TZ=<TIMEZONE>
-      - DEFAULT_WORKSPACE=/config
-    ports:
-      - 8443:8443
-    volumes:
-      - ./hass-config:/config
-    restart: unless-stopped
