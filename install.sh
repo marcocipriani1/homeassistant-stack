@@ -22,7 +22,9 @@ mkdir -p "/opt/stacks/hass/nodered"
 
 mkdir /opt/stacks/hass/zigbee2mqtt/data
 
-# Creating matter dir
+# Creating matter dirs
+
+mkdir /opt/stacks/hass/matter-server
 
 mkdir /opt/stacks/hass/home-assistant-matter-hub
 

@@ -53,6 +53,17 @@ services:
             # Make sure this matched your adapter location
             - /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_ac168f1a53e7ed11a343626262c613ac-if00-port0:/dev/ttyACM0
 
+  matter-server:
+    container_name: matter-server
+    image: ghcr.io/home-assistant-libs/python-matter-server:stable
+    restart: unless-stopped
+    security_opt:
+      - apparmor=unconfined
+    volumes:
+      - /opt/matter-server:/data
+      - /run/dbus:/run/dbus:ro
+    network_mode: host
+    
   matter-hub:
     image: ghcr.io/t0bst4r/home-assistant-matter-hub:latest
     restart: unless-stopped
