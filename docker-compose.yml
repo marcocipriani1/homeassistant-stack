@@ -14,7 +14,7 @@ services:
     container_name: nodered
     image: nodered/node-red
     environment:
-      - TZ=<TIMEZONE>
+      - TZ=Europe/Rome
     ports:
       - 1880:1880
     volumes:
@@ -60,10 +60,10 @@ services:
     security_opt:
       - apparmor=unconfined
     volumes:
-      - /opt/matter-server:/data
+      - /opt/stacks/hass/matter-server:/data
       - /run/dbus:/run/dbus:ro
     network_mode: host
-    
+
   matter-hub:
     image: ghcr.io/t0bst4r/home-assistant-matter-hub:latest
     restart: unless-stopped
@@ -82,6 +82,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - TZ=${TZ}
+      - TZ=Europe/Rome
     command: --interval 3600 --cleanup
     restart: unless-stopped
