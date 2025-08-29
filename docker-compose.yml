@@ -76,6 +76,25 @@ services:
     volumes:
       - /opt/stacks/hass/home-assistant-matter-hub:/data
 
+  fail2ban:
+    image: lscr.io/linuxserver/fail2ban:latest
+    container_name: fail2ban
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+      - VERBOSITY=-vv #optional
+    volumes:
+      - /srv/apps/fail2ban/config:/config
+      - /var/log:/var/log:ro
+      - /srv/apps/jellyfin/config/log:/remotelogs/jellyfin:ro
+      - /srv/apps/navidrome/navidrome.log:/remotelogs/navidrome:ro
+    restart: unless-stopped
+
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower

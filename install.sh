@@ -6,29 +6,33 @@ set -e
 echo " Starting home assistant stack setup..."
 echo ""
 
-# Creating base dir
+# Create base dir
 
 mkdir -p "/opt/stacks/hass"
 
-# Creating mosquitto dir
+# Create mosquitto dir
 
 mkdir -p "/opt/stacks/hass/mosquitto/config"
 
-# Creating Node Red dir
+# Create Node Red dir
 
 mkdir -p "/opt/stacks/hass/nodered"
 
-# Creating zigbee2mqtt dir
+# Create zigbee2mqtt dir
 
 mkdir /opt/stacks/hass/zigbee2mqtt/data
 
-# Creating matter dirs
+# Create matter dirs
 
 mkdir /opt/stacks/hass/matter-server
 
 mkdir /opt/stacks/hass/home-assistant-matter-hub
 
-# Creating mosquitto config file
+# Create Fail2Ban dirs
+
+mkdir -p /opt/stacks/fail2ban/config
+
+# Create mosquitto config file
 
 cat > /opt/stacks/hass/mosquitto/config/mosquitto.conf <<EOF
 persistence true
@@ -40,7 +44,7 @@ allow_anonymous false
 password_file /mosquitto/config/passwd
 EOF
 
-# Creating mosquitto user
+# Create mosquitto user
 
 groupadd -g 1883 mosquitto
 
