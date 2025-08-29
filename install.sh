@@ -28,10 +28,6 @@ mkdir /opt/stacks/hass/matter-server
 
 mkdir /opt/stacks/hass/home-assistant-matter-hub
 
-# Create Fail2Ban dirs
-
-mkdir -p /opt/stacks/fail2ban/config
-
 # Create mosquitto config file
 
 cat > /opt/stacks/hass/mosquitto/config/mosquitto.conf <<EOF
