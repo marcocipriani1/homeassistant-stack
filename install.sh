@@ -16,17 +16,21 @@ mkdir -p "/opt/stacks/hass/mosquitto/config"
 
 # Create Node Red dir
 
-mkdir -p "/opt/stacks/hass/nodered"
+mkdir "/opt/stacks/hass/nodered"
 
 # Create zigbee2mqtt dir
 
-mkdir /opt/stacks/hass/zigbee2mqtt/data
+mkdir -p /opt/stacks/hass/zigbee2mqtt/data
 
-# Create matter dirs
+# Create matter dir
 
 mkdir /opt/stacks/hass/matter-server
 
 mkdir /opt/stacks/hass/home-assistant-matter-hub
+
+# Create Cloudflared dir
+
+mkidr /opt/stacks/hass/cloudflared
 
 # Create mosquitto config file
 
