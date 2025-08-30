@@ -1,2 +1,3 @@
 HA_URL=your-home-assistant-url-and-port
 HA_TOKEN=your-home-assistant-token
+CLOUDFLARE_TUNNEL_TOKEN=your_tunnel_token_here
