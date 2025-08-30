@@ -85,3 +85,20 @@ services:
       - TZ=Europe/Rome
     command: --interval 3600 --cleanup
     restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+      - TUNNEL_ORIGIN_CERT=/etc/cloudflared/cert.pem
+    volumes:
+      - /opt/stacks/hass/cloudflared:/etc/cloudflared
+    command: tunnel run --no-autoupdate
+    networks:
+      - cloudflared_network
+
+networks:
+  cloudflared_network:
+    driver: bridge
