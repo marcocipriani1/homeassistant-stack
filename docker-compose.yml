@@ -94,7 +94,7 @@ services:
       - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
     volumes:
       - /opt/stacks/hass/cloudflared:/etc/cloudflared
-    command: tunnel run --no-autoupdate
+    command: tunnel run
     networks:
       - cloudflared_network
 
