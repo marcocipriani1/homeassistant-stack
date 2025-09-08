@@ -89,15 +89,10 @@ services:
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: cloudflared
+    network_mode: "host"   
     restart: unless-stopped
     environment:
-      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
     volumes:
-      - /opt/stacks/hass/cloudflared:/etc/cloudflared
+      - /etc/localtime:/etc/localtime:ro
     command: tunnel run
-    networks:
-      - cloudflared_network
-
-networks:
-  cloudflared_network:
-    driver: bridge
