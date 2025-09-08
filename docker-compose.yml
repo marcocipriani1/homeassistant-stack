@@ -92,7 +92,6 @@ services:
     restart: unless-stopped
     environment:
       - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
-      - TUNNEL_ORIGIN_CERT=/etc/cloudflared/cert.pem
     volumes:
       - /opt/stacks/hass/cloudflared:/etc/cloudflared
     command: tunnel run --no-autoupdate
