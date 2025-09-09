@@ -77,7 +77,6 @@ services:
     volumes:
       - /opt/stacks/hass/matter-server:/data
       - /run/dbus:/run/dbus:ro
-    network_mode: host
     networks:
       hass_net:
         ipv4_address: 172.20.0.14
@@ -85,7 +84,6 @@ services:
   matter-hub:
     image: ghcr.io/t0bst4r/home-assistant-matter-hub:latest
     restart: unless-stopped
-    network_mode: host
     environment: # more options can be found in the configuration section
       - HAMH_HOME_ASSISTANT_URL=${HA_URL}
       - HAMH_HOME_ASSISTANT_ACCESS_TOKEN=${HA_TOKEN}
