@@ -1,3 +1,7 @@
+networks:
+  hass_net:
+    external: true
+
 services:
   homeassistant:
     image: homeassistant/home-assistant:latest
@@ -8,7 +12,9 @@ services:
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     privileged: true
-    network_mode: host
+    networks:
+      hass_net:
+        ipv4_address: 172.20.0.10
 
   nodered:
     container_name: nodered
@@ -23,6 +29,9 @@ services:
       - homeassistant
       - mosquitto
     restart: unless-stopped
+    networks:
+      hass_net:
+        ipv4_address: 172.20.0.11
 
   mosquitto:
     container_name: mosquitto
@@ -37,6 +46,9 @@ services:
       - "/opt/stacks/hass/mosquitto/data:/mosquitto/data"
       - "/opt/stacks/hass/mosquitto/log:/mosquitto/log"
     restart: unless-stopped
+    networks:
+      hass_net:
+        ipv4_address: 172.20.0.12
 
   zigbee2mqtt:
         container_name: zigbee2mqtt
@@ -52,6 +64,9 @@ services:
         devices:
             # Make sure this matched your adapter location
             - /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_ac168f1a53e7ed11a343626262c613ac-if00-port0:/dev/ttyACM0
+        networks:
+          hass_net:
+            ipv4_address: 172.20.0.13
 
   matter-server:
     container_name: matter-server
@@ -63,6 +78,9 @@ services:
       - /opt/stacks/hass/matter-server:/data
       - /run/dbus:/run/dbus:ro
     network_mode: host
+    networks:
+      hass_net:
+        ipv4_address: 172.20.0.14
 
   matter-hub:
     image: ghcr.io/t0bst4r/home-assistant-matter-hub:latest
@@ -75,6 +93,9 @@ services:
       - HAMH_HTTP_PORT=8482
     volumes:
       - /opt/stacks/hass/home-assistant-matter-hub:/data
+    networks:
+      hass_net:
+        ipv4_address: 172.20.0.15
 
   watchtower:
     image: containrrr/watchtower
@@ -85,6 +106,9 @@ services:
       - TZ=Europe/Rome
     command: --interval 3600 --cleanup
     restart: unless-stopped
+    networks:
+      hass_net:
+        ipv4_address: 172.20.0.16
 
   cloudflared:
     image: cloudflare/cloudflared:latest
@@ -94,5 +118,8 @@ services:
       - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
       - TZ=Europe/Rome
     command: tunnel run
+    networks:
+      hass_net:
+        ipv4_address: 172.20.0.17
     
     
