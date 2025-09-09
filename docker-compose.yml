@@ -88,7 +88,6 @@ services:
 
   cloudflared:
     image: cloudflare/cloudflared:latest
-    network_mode: host
     restart: unless-stopped
     container_name: cloudflared
     environment:
